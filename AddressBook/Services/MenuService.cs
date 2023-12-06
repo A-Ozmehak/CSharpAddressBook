@@ -49,6 +49,8 @@ public class MenuService : IMenuService
         IContact contact = new Contact();
 
         Console.WriteLine("Add Contact");
+        Console.WriteLine("---------------");
+
         Console.WriteLine("Add a firstname: ");
         contact.FirstName = Console.ReadLine()!;
 
@@ -83,16 +85,12 @@ public class MenuService : IMenuService
 
     private void GetSingleContactOptions()
     {
-        Console.WriteLine("Get Single Contact");
-        Console.WriteLine("");
-    }
-
-    private void GetAllContactsOptions()
-    {
-        var res = _contactService.GetAllContacts();
-
-        Console.WriteLine("Get All Contacts");
-        Console.WriteLine("");
+        Console.WriteLine("Show Contact");
+        Console.WriteLine("---------------");
+        Console.WriteLine("Enter the name of the contact you want to see: "); 
+       
+        string firstName = Console.ReadLine()!;
+        Contact contact = _contactService.GetSingleContact(firstName);
 
         if (!res.Any())
         {
@@ -100,7 +98,28 @@ public class MenuService : IMenuService
         }
         else
         {
-            foreach (var contact in res)
+            Console.WriteLine($"{contact.FirstName} {contact.LastName}");
+            Console.WriteLine($"{contact.Email} {contact.PhoneNumber}");
+            Console.WriteLine($"{contact.Address} {contact.ZipCode} {contact.City}");
+            Console.WriteLine("\n\n");
+        }
+        
+    }
+
+    private void GetAllContactsOptions()
+    {
+        List<Contact> contacts = _contactService.GetAllContacts();
+
+        Console.WriteLine("Get All Contacts");
+        Console.WriteLine("---------------");
+
+        if (!contacts.Any())
+        {
+            Console.WriteLine("No contacts found");
+        }
+        else
+        {
+            foreach (var contact in contacts)
             {
                 Console.WriteLine($"{contact.FirstName} {contact.LastName}");
                 Console.WriteLine($"{contact.Email} {contact.PhoneNumber}");
