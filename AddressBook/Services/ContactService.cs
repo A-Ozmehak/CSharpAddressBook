@@ -12,7 +12,7 @@ public class ContactService : IContactService
         _contacts.Add(contact);
     }
 
-    public void RemoveContact(Contact contact)
+    public void RemoveContact(string firstName, string lastName)
     {
         string fullName = GetFullName(firstName, lastName);
         Contact contactToRemove = _contacts.Find(x => GetFullName(x.FirstName, x.LastName) == fullName);

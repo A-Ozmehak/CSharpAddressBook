@@ -11,4 +11,15 @@ public class Contact : IContact
     public string Address { get; set; } = null!;
     public string City { get; set; } = null!;
     public string ZipCode { get; set; } = null!;
+
+    public Contact(string firstName, string lastName, string email, int phoneNumber, string address, string city, string zipCode)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
+        PhoneNumber = phoneNumber;
+        Address = address;
+        City = city;
+        ZipCode = zipCode;
+    }
 }
