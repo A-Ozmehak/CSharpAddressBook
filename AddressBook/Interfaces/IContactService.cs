@@ -7,5 +7,6 @@ public interface IContactService
     void AddContact(Contact contact);
     void RemoveContact(string FirstName, string LastName);
     Contact GetSingleContact(string FirstName);
-    void GetAllContacts();
+
+    List<Contact> GetAllContacts();
 }

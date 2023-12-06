@@ -52,7 +52,8 @@ public class MenuService : IMenuService
     {
 
         Console.WriteLine("Add Contact");
-
+        Console.WriteLine("---------------");
+        
         Console.WriteLine("Add a firstname: ");
         string firstName = Console.ReadLine()!;
 
@@ -80,6 +81,8 @@ public class MenuService : IMenuService
     private void RemoveContactOptions()
     {
         Console.WriteLine("Remove Contact");
+        Console.WriteLine("---------------");
+        
         Console.WriteLine("Enter the firstname of the contact you want to remove: ");
         string firstName = Console.ReadLine()!;
         Console.WriteLine("Enter the lastname of the contact you want to remove: ");
@@ -92,6 +95,8 @@ public class MenuService : IMenuService
     private void GetSingleContactOptions()
     {
         Console.WriteLine("Show Contact");
+        Console.WriteLine("---------------");
+        
         Console.WriteLine("Enter the name of the contact you want to see: ");
         string firstName = Console.ReadLine()!;
         Contact contact = _contactService.GetSingleContact(firstName);
@@ -105,30 +110,31 @@ public class MenuService : IMenuService
             Console.WriteLine($"{contact.FirstName} {contact.LastName}");
             Console.WriteLine($"{contact.Email} {contact.PhoneNumber}");
             Console.WriteLine($"{contact.Address} {contact.ZipCode} {contact.City}");
+            Console.WriteLine("\n\n");
         }
         
     }
 
     private void GetAllContactsOptions()
     {
-        //var res = _contactService.GetAllContacts();
+        List<Contact> contacts = _contactService.GetAllContacts();
 
         Console.WriteLine("Get All Contacts");
-        Console.WriteLine("");
+        Console.WriteLine("---------------");
 
-        //if (!res.Any())
-        //{
-        //    Console.WriteLine("No contacts found");
-        //}
-        //else
-        //{
-        //    foreach (var contact in res)
-        //    {
-        //        Console.WriteLine($"{contact.FirstName} {contact.LastName}");
-        //        Console.WriteLine($"{contact.Email} {contact.PhoneNumber}");
-        //        Console.WriteLine($"{contact.Address} {contact.ZipCode} {contact.City}");
-        //    }
-        //}
+        if (!contacts.Any())
+        {
+            Console.WriteLine("No contacts found");
+        }
+        else
+        {
+            foreach (var contact in contacts)
+            {
+                Console.WriteLine($"{contact.FirstName} {contact.LastName}");
+                Console.WriteLine($"{contact.Email} {contact.PhoneNumber}");
+                Console.WriteLine($"{contact.Address} {contact.ZipCode} {contact.City}");
+            }
+        }
     }
 
     private void CloseApplicationOptions()

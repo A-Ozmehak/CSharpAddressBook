@@ -5,32 +5,32 @@ namespace AddressBook.Services;
 
 public class ContactService : IContactService
 {
-    private List<Contact> contacts = [];
+    private List<Contact> _contacts = [];
 
     public void AddContact(Contact contact)
     {
-        contacts.Add(contact);
+        _contacts.Add(contact);
     }
 
     public void RemoveContact(string firstName, string lastName)
     {
         string fullName = GetFullName(firstName, lastName);
-        Contact contactToRemove = contacts.Find(x => GetFullName(x.FirstName, x.LastName) == fullName);
+        Contact contactToRemove = _contacts.Find(x => GetFullName(x.FirstName, x.LastName) == fullName);
 
         if (contactToRemove != null)
         {
-            contacts.Remove(contactToRemove);
+            _contacts.Remove(contactToRemove);
         }
     }
 
-    public void GetAllContacts()
+    public List<Contact> GetAllContacts()
     {
-        //return contacts;
+        return _contacts;
     }
 
     public Contact GetSingleContact(string firstName)
     {
-        return contacts.Find(x => x.FirstName == firstName)!;
+        return _contacts.Find(x => x.FirstName == firstName)!;
     }
 
     public string GetFullName(string firstName, string lastName)
