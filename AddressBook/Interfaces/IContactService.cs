@@ -5,7 +5,7 @@ namespace AddressBook.Interfaces;
 public interface IContactService
 {
     void AddContact(Contact contact);
-    void RemoveContact(Contact contact);
-    void GetSingleContact(Contact contact);
+    void RemoveContact(string FirstName, string LastName);
+    Contact GetSingleContact(string FirstName);
     void GetAllContacts();
 }

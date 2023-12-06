@@ -12,18 +12,29 @@ public class ContactService : IContactService
         contacts.Add(contact);
     }
 
-    public void RemoveContact(Contact contact)
+    public void RemoveContact(string firstName, string lastName)
     {
-           contacts.Remove(contact);
-    }
+        string fullName = GetFullName(firstName, lastName);
+        Contact contactToRemove = contacts.Find(x => GetFullName(x.FirstName, x.LastName) == fullName);
 
-    public void GetSingleContact(Contact contact)
-    {
-        contacts.Find(contact);
+        if (contactToRemove != null)
+        {
+            contacts.Remove(contactToRemove);
+        }
     }
 
     public void GetAllContacts()
     {
-        contacts.ToList();
+        //return contacts;
+    }
+
+    public Contact GetSingleContact(string firstName)
+    {
+        return contacts.Find(x => x.FirstName == firstName)!;
+    }
+
+    public string GetFullName(string firstName, string lastName)
+    {
+        return firstName + lastName;
     }
 }
