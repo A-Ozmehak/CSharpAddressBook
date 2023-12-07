@@ -6,6 +6,8 @@ namespace AddressBook.Services;
 public class MenuService : IMenuService
 {
     private readonly IContactService _contactService = new ContactService();
+
+    // Menu that runs the method depending on the users input
     public void ShowMenu()
     {
         while (true)
@@ -49,6 +51,7 @@ public class MenuService : IMenuService
         }
     }
 
+    // Add a contact options that reads the input values and adds it to the Contact
     private void AddContactOptions()
     {
 
@@ -79,20 +82,43 @@ public class MenuService : IMenuService
         _contactService.AddContact(new Contact(firstName, lastName, email, phoneNumber, address, zipCode, city));
     }
 
+    // Remove a contact options
+    // Checks if the contact exists, the length is longer then 2 
     private void RemoveContactOptions()
     {
         Console.WriteLine("Remove Contact");
         Console.WriteLine("---------------");
-        
-        Console.WriteLine("Enter the firstname of the contact you want to remove: ");
-        string firstName = Console.ReadLine()!;
-        Console.WriteLine("Enter the lastname of the contact you want to remove: ");
-        var lastName = Console.ReadLine();
 
-        _contactService.RemoveContact(firstName, lastName!);
-        
+        Console.WriteLine("Enter the full name (firstname and lastname) of the contact you want to remove");
+
+        var fullName = Console.ReadLine()!;
+        if (string.IsNullOrEmpty(fullName))
+        {
+            Console.WriteLine("Invalid input. Enter a full name (firstname lastname)");
+            return;
+        }
+
+        var nameParts = fullName.Split(' ');
+        if (nameParts.Length != 2) 
+        {
+            Console.WriteLine("Invalid input. Please enter a full name (firstname lastname)");
+            return;
+        }
+     
+        var firstName = nameParts[0];
+        var lastName = nameParts[1];
+
+        var contact = _contactService.GetSingleContact(firstName);
+        if (contact == null || contact.LastName != lastName) 
+        {
+            Console.WriteLine("Can't find a contact with that name");
+            return;
+        }
+
+        _contactService.RemoveContact(firstName, lastName);
     }
 
+    // Prints out a contact
     private void GetSingleContactOptions()
     {
         Console.WriteLine("Show Contact");
@@ -116,6 +142,7 @@ public class MenuService : IMenuService
         
     }
 
+    // Loops out all the contact
     private void GetAllContactsOptions()
     {
         IEnumerable<Contact> contacts = _contactService.GetAllContacts();
@@ -139,6 +166,7 @@ public class MenuService : IMenuService
         }
     }
 
+    // Closes the application
     private void CloseApplicationOptions()
     {
         Environment.Exit(0);

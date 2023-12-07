@@ -10,6 +10,7 @@ public class ContactService : IContactService
     private readonly FileService _fileService = new FileService(@"C:\Users\Anna\Documents\Repos\CSharp\CSharpAddressBook\addressBookContacts.json");
     private List<Contact> _contacts = [];
 
+    // Adds a contact to the List and a JSON file
     public void AddContact(Contact contact)
     {
         try
@@ -24,6 +25,7 @@ public class ContactService : IContactService
 
     }
 
+    // Removes a contact from the List and the JSON file that matches the firstname and lastname
     public void RemoveContact(string firstName, string lastName)
     {
         var contactToRemove = _contacts.FirstOrDefault(c => c.FirstName == firstName && c.LastName == lastName);
@@ -35,6 +37,7 @@ public class ContactService : IContactService
         }
     }
 
+    // Gets all the contacts from the JSON file
     public IEnumerable<Contact> GetAllContacts()
     {
         try
@@ -49,11 +52,13 @@ public class ContactService : IContactService
         return _contacts;
     }
 
+    // Find a contact
     public Contact GetSingleContact(string firstName)
     {
         return _contacts.Find(x => x.FirstName == firstName)!;
     }
 
+    // Fullname of the contact
     public string GetFullName(string firstName, string lastName)
     {
         return firstName + lastName;

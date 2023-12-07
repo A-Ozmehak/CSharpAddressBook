@@ -9,6 +9,7 @@ public class FileService(string filePath) : IFileService
 {
     private readonly string _filePath = filePath; 
 
+    // Checks if the file exists and then gets the contact from the file
     public string GetContactsFromFile()
     {
         try
@@ -23,6 +24,7 @@ public class FileService(string filePath) : IFileService
         return null!;
     }
 
+    // Saves the contact to the file
     public bool SaveContactToFile(string content)
     {
         try
