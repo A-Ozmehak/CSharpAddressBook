@@ -21,17 +21,17 @@ public class ContactService : IContactService
             }
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        
+
     }
 
     public void RemoveContact(string firstName, string lastName)
     {
-        string fullName = GetFullName(firstName, lastName);
-        Contact contactToRemove = _contacts.Find(x => GetFullName(x.FirstName, x.LastName) == fullName);
-
+        var contactToRemove = _contacts.FirstOrDefault(c => c.FirstName == firstName && c.LastName == lastName);
         if (contactToRemove != null)
         {
             _contacts.Remove(contactToRemove);
+            var json = JsonConvert.SerializeObject(contactToRemove);
+            _fileService.SaveContactToFile(json);
         }
     }
 

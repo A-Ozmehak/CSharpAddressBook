@@ -131,10 +131,10 @@ public class MenuService : IMenuService
         {
             foreach (var contact in contacts)
             {
-                Console.WriteLine($"{contact.FirstName} {contact.LastName}");
-                Console.WriteLine($"{contact.Email} {contact.PhoneNumber}");
-                Console.WriteLine($"{contact.Address} {contact.ZipCode} {contact.City}");
-                Console.WriteLine("\n\n");
+                Console.WriteLine($"Name: {contact.FirstName} {contact.LastName}");
+                Console.WriteLine($"Contact Info: {contact.Email} {contact.PhoneNumber}");
+                Console.WriteLine($"Address: {contact.Address} {contact.ZipCode} {contact.City}");
+                Console.WriteLine("\n");
             }
         }
     }
