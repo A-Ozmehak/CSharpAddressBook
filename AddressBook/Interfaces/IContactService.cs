@@ -8,5 +8,5 @@ public interface IContactService
     void RemoveContact(string FirstName, string LastName);
     Contact GetSingleContact(string FirstName);
 
-    List<Contact> GetAllContacts();
+    IEnumerable<Contact> GetAllContacts();
 }
