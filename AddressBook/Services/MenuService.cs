@@ -11,6 +11,7 @@ public class MenuService : IMenuService
         while (true)
         {
             Console.WriteLine("Your Address Book");
+            GetAllContactsOptions();
             Console.WriteLine("1. Add Contact");
             Console.WriteLine("2. Remove Contact");
             Console.WriteLine("3. Get Single Contact");
@@ -117,9 +118,9 @@ public class MenuService : IMenuService
 
     private void GetAllContactsOptions()
     {
-        List<Contact> contacts = _contactService.GetAllContacts();
+        IEnumerable<Contact> contacts = _contactService.GetAllContacts();
 
-        Console.WriteLine("Get All Contacts");
+        Console.WriteLine("All Contacts");
         Console.WriteLine("---------------");
 
         if (!contacts.Any())
@@ -133,6 +134,7 @@ public class MenuService : IMenuService
                 Console.WriteLine($"{contact.FirstName} {contact.LastName}");
                 Console.WriteLine($"{contact.Email} {contact.PhoneNumber}");
                 Console.WriteLine($"{contact.Address} {contact.ZipCode} {contact.City}");
+                Console.WriteLine("\n\n");
             }
         }
     }
