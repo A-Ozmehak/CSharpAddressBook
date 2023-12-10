@@ -12,8 +12,8 @@ public class MenuService
     {
         while (true)
         {
-            Console.WriteLine("Your Address Book");
-            //GetAllContactsOptions();
+            Console.WriteLine("\n");
+            Console.WriteLine("What do you want to do?");
             Console.WriteLine("1. Add Contact");
             Console.WriteLine("2. Remove Contact");
             Console.WriteLine("3. Get Single Contact");
@@ -28,18 +28,23 @@ public class MenuService
             switch (option)
             {
                 case "1":
+                    Console.Clear();
                     AddContactOptions();
                     break;
                 case "2":
+                    Console.Clear();
                     RemoveContactOptions();
                     break;
                 case "3":
+                    Console.Clear();
                     GetSingleContactOptions();
                     break;
                 case "4":
+                    Console.Clear();
                     GetAllContactsOptions();
                     break;
                 case "5":
+                    Console.Clear();
                     CloseApplicationOptions();
                     return;
                 default:
@@ -135,6 +140,7 @@ public class MenuService
         if (!contacts.Any())
         {
             Console.WriteLine("No contacts found");
+            Console.WriteLine("\n");
         }
         else
         {
