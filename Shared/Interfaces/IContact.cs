@@ -1,4 +1,4 @@
-﻿namespace AddressBook.Interfaces;
+﻿namespace Shared.Interfaces;
 
 public interface IContact
 {

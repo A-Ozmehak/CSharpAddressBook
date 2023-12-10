@@ -1,19 +1,19 @@
-﻿using AddressBook.Interfaces;
-using AddressBook.Models;
+﻿using Shared.Interfaces;
+using Shared.Models;
+using Shared.Services;
 
 namespace AddressBook.Services;
 
-public class MenuService : IMenuService
+public class MenuService
 {
-    private readonly IContactService _contactService = new ContactService();
+    private static readonly IContactService _contactService = new ContactService();
 
-    // Menu that runs the method depending on the users input
-    public void ShowMenu()
+    public static void ShowMenu()
     {
         while (true)
         {
             Console.WriteLine("Your Address Book");
-            GetAllContactsOptions();
+            //GetAllContactsOptions();
             Console.WriteLine("1. Add Contact");
             Console.WriteLine("2. Remove Contact");
             Console.WriteLine("3. Get Single Contact");
@@ -51,82 +51,65 @@ public class MenuService : IMenuService
         }
     }
 
-    // Add a contact options that reads the input values and adds it to the Contact
-    private void AddContactOptions()
+    public static void AddContactOptions()
     {
+        IContact contact = new Contact();
 
         Console.WriteLine("Add Contact");
         Console.WriteLine("---------------");
         
         Console.WriteLine("Add a firstname: ");
-        string firstName = Console.ReadLine()!;
+        contact.FirstName = Console.ReadLine()!;
 
         Console.WriteLine("Add a lastname: ");
-        string lastName = Console.ReadLine()!;
+        contact.LastName = Console.ReadLine()!;
 
         Console.WriteLine("Add a email: ");
-        string email = Console.ReadLine()!;
+        contact.Email = Console.ReadLine()!;
 
         Console.WriteLine("Add a phonenumber: ");
-        int phoneNumber = int.Parse(Console.ReadLine()!);
+        contact.PhoneNumber = int.Parse(Console.ReadLine()!);
 
         Console.WriteLine("Add a address: ");
-        string address = Console.ReadLine()!;
+        contact.Address = Console.ReadLine()!;
 
         Console.WriteLine("Add a city: ");
-        string city = Console.ReadLine()!;
+        contact.City = Console.ReadLine()!;
 
         Console.WriteLine("Add a zipcode: ");
-        string zipCode = Console.ReadLine()!;
+        contact.ZipCode = Console.ReadLine()!;
 
-        _contactService.AddContact(new Contact(firstName, lastName, email, phoneNumber, address, zipCode, city));
+        _contactService.AddContact(contact);
     }
 
-    // Remove a contact options
-    // Checks if the contact exists, the length is longer then 2 
-    private void RemoveContactOptions()
+    public static void RemoveContactOptions()
     {
         Console.WriteLine("Remove Contact");
         Console.WriteLine("---------------");
 
-        Console.WriteLine("Enter the full name (firstname and lastname) of the contact you want to remove");
+        Console.WriteLine("Enter the email of the contact you want to remove");
+        string email = Console.ReadLine()!;
 
-        var fullName = Console.ReadLine()!;
-        if (string.IsNullOrEmpty(fullName))
+        bool isRemoved = _contactService.RemoveContactByEmail(email);
+        if (isRemoved)
         {
-            Console.WriteLine("Invalid input. Enter a full name (firstname lastname)");
-            return;
+            Console.WriteLine("Contact removed successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Contact not found.");
         }
 
-        var nameParts = fullName.Split(' ');
-        if (nameParts.Length != 2) 
-        {
-            Console.WriteLine("Invalid input. Please enter a full name (firstname lastname)");
-            return;
-        }
-     
-        var firstName = nameParts[0];
-        var lastName = nameParts[1];
-
-        var contact = _contactService.GetSingleContact(firstName);
-        if (contact == null || contact.LastName != lastName) 
-        {
-            Console.WriteLine("Can't find a contact with that name");
-            return;
-        }
-
-        _contactService.RemoveContact(firstName, lastName);
     }
 
-    // Prints out a contact
-    private void GetSingleContactOptions()
+    public static void GetSingleContactOptions()
     {
         Console.WriteLine("Show Contact");
         Console.WriteLine("---------------");
         
         Console.WriteLine("Enter the name of the contact you want to see: ");
         string firstName = Console.ReadLine()!;
-        Contact contact = _contactService.GetSingleContact(firstName);
+        IContact contact = _contactService.GetSingleContact(firstName);
 
         if (contact == null)
         {
@@ -142,10 +125,9 @@ public class MenuService : IMenuService
         
     }
 
-    // Loops out all the contact
-    private void GetAllContactsOptions()
+    public static void GetAllContactsOptions()
     {
-        IEnumerable<Contact> contacts = _contactService.GetAllContacts();
+        var contacts = _contactService?.GetAllContacts() ?? new List<IContact>();
 
         Console.WriteLine("All Contacts");
         Console.WriteLine("---------------");
@@ -166,8 +148,7 @@ public class MenuService : IMenuService
         }
     }
 
-    // Closes the application
-    private void CloseApplicationOptions()
+    private static void CloseApplicationOptions()
     {
         Environment.Exit(0);
     }
