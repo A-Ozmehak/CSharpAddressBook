@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace Shared.Services;
 
-internal class FileService : IFileService
+public class FileService : IFileService
 {
 
     public string GetContactsFromFile(string filePath)

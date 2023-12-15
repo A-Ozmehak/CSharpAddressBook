@@ -7,8 +7,15 @@ namespace Shared.Services;
 
 public class ContactService : IContactService
 {
-    private readonly IFileService _fileService = new FileService();
-    private List<IContact> _contacts = [];
+    private readonly IFileService _fileService;
+
+    public ContactService(IFileService fileService)
+    {
+        _fileService = fileService;
+    }
+
+    //private readonly IFileService _fileService = new FileService();
+    public List<IContact> Contacts { get; private set; } = [];
     private readonly string _filePath = @"C:\Users\Anna\Documents\Repos\CSharp\CSharpAddressBook\addressBookContacts.json";
 
    
@@ -16,14 +23,15 @@ public class ContactService : IContactService
     {
         try
         {
-            if (!_contacts.Any(name => name.FirstName == contact.FirstName))
-            {
-                _contacts.Add(contact);
+            //if (!_contacts.Any(name => name.FirstName == contact.FirstName))
+            //{
+            Contacts.Add(contact);
 
-                string json = JsonConvert.SerializeObject(_contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
-                var result = _fileService.SaveContactToFile(_filePath, json);
-                return result;
-            }
+                string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
+                //var result = 
+                _fileService.SaveContactToFile(_filePath, json);
+                return true;
+            //}
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return false;
@@ -35,12 +43,12 @@ public class ContactService : IContactService
     {
         try
         {
-            var contactToRemove = _contacts.FirstOrDefault(c => c.Email == email);
+            var contactToRemove = Contacts.FirstOrDefault(c => c.Email == email);
             if (contactToRemove != null)
             {
-                _contacts.Remove(contactToRemove);
+                Contacts.Remove(contactToRemove);
 
-                string json = JsonConvert.SerializeObject(_contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+                string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
                 _fileService.SaveContactToFile(_filePath, json);
                 return true;
 
@@ -61,7 +69,7 @@ public class ContactService : IContactService
         {
             GetAllContacts();
 
-            var contact = _contacts.FirstOrDefault(x => x.FirstName == firstName);
+            var contact = Contacts.FirstOrDefault(x => x.FirstName == firstName);
             return contact ??= null!;
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
@@ -75,8 +83,8 @@ public class ContactService : IContactService
             var content = _fileService.GetContactsFromFile(_filePath);
             if (!string.IsNullOrEmpty(content))
             {
-                _contacts = JsonConvert.DeserializeObject<List<IContact>>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All })!;
-                return _contacts;
+                Contacts = JsonConvert.DeserializeObject<List<IContact>>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All })!;
+                return Contacts;
             }
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
