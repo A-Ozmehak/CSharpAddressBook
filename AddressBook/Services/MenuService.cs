@@ -6,7 +6,8 @@ namespace AddressBook.Services;
 
 public class MenuService
 {
-    private static readonly IContactService _contactService = new ContactService();
+    private static readonly IFileService _fileService = new FileService();
+    private static readonly IContactService _contactService = new ContactService(_fileService);
 
     public static void ShowMenu()
     {
