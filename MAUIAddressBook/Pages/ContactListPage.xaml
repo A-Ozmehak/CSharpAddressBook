@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUIAddressBook.Pages.ContactListPage"
+             
+             xmlns:viewmodels="clr-namespace:MAUIAddressBook.ViewModels"
+             xmlns:models="clr-namespace:Shared.Models;assembly=Shared"
+             x:DataType="{x:Type viewmodels:ContactListViewModel}"
+             
+             Title="Contact List">
+    <VerticalStackLayout>
+        <Grid RowDefinitions="auto, *">
+            <VerticalStackLayout Grid.Row="0">
+                <Label 
+                    Text="Contact List"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    FontSize="20"
+                    />
+
+                <CollectionView ItemsSource="{Binding }">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate >
+                            <Grid ColumnDefinitions="*, auto">
+                                
+                                <VerticalStackLayout Grid.Column="0">
+                                    <Label Text="{Binding}" />
+                                    <Label Text="{Binding }" />
+                                    <Label Text="{Binding }" />
+                                    <Label Text="{Binding }" />
+                                    <Label Text="{Binding }" />
+                                    <Label Text="{Binding }" />
+                                    <Label Text="{Binding }" />
+                                </VerticalStackLayout>
+                                <Button Text="X" Grid.Column="1" />
+                                
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+            </VerticalStackLayout>
+        </Grid>
+        
+        <Button Text="Add a Contact" Command="{Binding NavigateToAddContactCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

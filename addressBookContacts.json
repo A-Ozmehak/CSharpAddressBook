@@ -1,1 +1,1 @@
-{"$type":"System.Collections.Generic.List`1[[Shared.Interfaces.IContact, Shared]], System.Private.CoreLib","$values":[{"$type":"Shared.Models.Contact, Shared","FirstName":"calle","LastName":"ozmehak","Email":"ozmehak.calle","PhoneNumber":323424,"Address":"sdfsdf","City":"rwerwe","ZipCode":"treter"}]}
+[{"$type":"Shared.Models.Contact, Shared","FirstName":"calle","LastName":"ozmehak","Email":"ozmehak.calle@gmail.com","PhoneNumber":343243,"Address":"fdsf","City":"sefs","ZipCode":"sdffs"}]
