@@ -148,7 +148,8 @@ public class MenuService
             foreach (var contact in contacts)
             {
                 Console.WriteLine($"Name: {contact.FirstName} {contact.LastName}");
-                Console.WriteLine($"Contact Info: {contact.Email} {contact.PhoneNumber}");
+                Console.WriteLine($"Email: {contact.Email}");
+                Console.WriteLine($"Phone number: {contact.PhoneNumber}");
                 Console.WriteLine($"Address: {contact.Address} {contact.ZipCode} {contact.City}");
                 Console.WriteLine("\n");
             }
