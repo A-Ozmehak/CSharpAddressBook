@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUIAddressBook.Pages.ContactAddPage"
+             
+             xmlns:viewmodels="clr-namespace:MAUIAddressBook.ViewModels"
+             xmlns:models="clr-namespace:Shared.Models;assembly=Shared"
+             x:DataType="{x:Type viewmodels:ContactAddViewModel}"
+             
+             Title="Add Contact">
+    
+    <ScrollView>
+        <Grid RowDefinitions="auto, *">
+            <VerticalStackLayout Grid.Row="0">
+                <Label 
+                Text="Add Contact"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="20"
+                />
+
+                <Label Text="Firstname" />
+                <Entry Text="{Binding AddContactForm.FirstName}" />
+
+                <Label Text="Lastname" />
+                <Entry Text="{Binding AddContactForm.LastName}" />
+
+                <Label Text="Email" />
+                <Entry Text="{Binding AddContactForm.Email}" />
+
+                <Label Text="Phonenumber" />
+                <Entry Text="{Binding AddContactForm.PhoneNumber}" />
+
+                <Label Text="Address" />
+                <Entry Text="{Binding AddContactForm.Address}" />
+
+                <Label Text="Zipcode" />
+                <Entry Text="{Binding AddContactForm.ZipCode}" />
+
+                <Label Text="City" />
+                <Entry Text="{Binding AddContactForm.City}" />
+
+                <Button Text="Add Contact" Command="{Binding AddContactToListCommand}" />
+
+                <Button Text="Go to Contact List" Command="{Binding NavigateToContactListCommand}" />
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

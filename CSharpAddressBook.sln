@@ -5,7 +5,11 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook", "AddressBook\AddressBook.csproj", "{1E1282CF-BDD4-4745-871D-92743B46DEBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{3482A864-67CB-403F-B528-E55041EED098}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{3482A864-67CB-403F-B528-E55041EED098}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.Tests", "AddressBook.Tests\AddressBook.Tests.csproj", "{924529BD-3A2B-4627-9EE6-657A7E686E3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAUIAddressBook", "MAUIAddressBook\MAUIAddressBook.csproj", "{FB867F7C-4692-4CF6-BC30-67FC6133A11A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,16 @@ Global
 		{3482A864-67CB-403F-B528-E55041EED098}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3482A864-67CB-403F-B528-E55041EED098}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3482A864-67CB-403F-B528-E55041EED098}.Release|Any CPU.Build.0 = Release|Any CPU
+		{924529BD-3A2B-4627-9EE6-657A7E686E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924529BD-3A2B-4627-9EE6-657A7E686E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{924529BD-3A2B-4627-9EE6-657A7E686E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924529BD-3A2B-4627-9EE6-657A7E686E3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB867F7C-4692-4CF6-BC30-67FC6133A11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB867F7C-4692-4CF6-BC30-67FC6133A11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB867F7C-4692-4CF6-BC30-67FC6133A11A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FB867F7C-4692-4CF6-BC30-67FC6133A11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB867F7C-4692-4CF6-BC30-67FC6133A11A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB867F7C-4692-4CF6-BC30-67FC6133A11A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
