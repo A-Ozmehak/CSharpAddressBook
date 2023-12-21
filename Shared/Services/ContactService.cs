@@ -23,22 +23,17 @@ public class ContactService : IContactService
     {
         try
         {
-            //if (!_contacts.Any(name => name.FirstName == contact.FirstName))
-            //{
             Contacts.Add(contact);
 
-                string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
-                //var result = 
-                _fileService.SaveContactToFile(_filePath, json);
-                return true;
-            //}
+            string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
+            _fileService.SaveContactToFile(_filePath, json);
+            return true;
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return false;
 
     }
 
- 
     public bool RemoveContactByEmail(string email)
     {
         try
