@@ -1,11 +1,8 @@
-﻿using Newtonsoft.Json;
-using Shared.Interfaces;
-using Shared.Models;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Shared.Services;
 
-public class FileService : IFileService
+public class FileService
 {
 
     public string GetContactsFromFile(string filePath)

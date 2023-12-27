@@ -1,1 +1,1 @@
-[{"$type":"Shared.Models.Contact, Shared","FirstName":"calle","LastName":"ozmehak","Email":"ozmehak.calle@gmail.com","PhoneNumber":343243,"Address":"fdsf","City":"sefs","ZipCode":"sdffs"}]
+[{"$type":"Shared.Models.Contact, Shared","FirstName":"Calle","LastName":"ozmehak","Email":"ozmehak.calle@gmail.com","PhoneNumber":343243,"Address":"fdsf","City":"sefs","ZipCode":"sdffs","FullName":"Calle ozmehak","FullAddress":"fdsf sdffs sefs"}]

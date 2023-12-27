@@ -6,8 +6,8 @@ namespace AddressBook.Services;
 
 public class MenuService
 {
-    private static readonly IFileService _fileService = new FileService();
-    private static readonly IContactService _contactService = new ContactService(_fileService);
+    private static readonly FileService _fileService = new FileService();
+    private static readonly ContactService _contactService = new ContactService(_fileService);
 
     public static void ShowMenu()
     {
@@ -59,7 +59,7 @@ public class MenuService
 
     public static void AddContactOptions()
     {
-        IContact contact = new Contact();
+        Contact contact = new Contact();
 
         Console.WriteLine("Add Contact");
         Console.WriteLine("---------------");
@@ -115,7 +115,7 @@ public class MenuService
         
         Console.WriteLine("Enter the name of the contact you want to see: ");
         string firstName = Console.ReadLine()!;
-        IContact contact = _contactService.GetSingleContact(firstName);
+        Contact contact = _contactService.GetSingleContact(firstName);
 
         if (contact == null)
         {
@@ -133,7 +133,7 @@ public class MenuService
 
     public static void GetAllContactsOptions()
     {
-        var contacts = _contactService?.GetAllContacts() ?? new List<IContact>();
+        var contacts = _contactService?.GetAllContacts() ?? new List<Contact>();
 
         Console.WriteLine("All Contacts");
         Console.WriteLine("---------------");

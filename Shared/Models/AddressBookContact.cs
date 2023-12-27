@@ -1,6 +1,6 @@
 ﻿namespace Shared.Models;
 
-public class Contact
+public class AddressBookContact
 {
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
