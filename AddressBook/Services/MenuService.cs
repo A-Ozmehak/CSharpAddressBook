@@ -1,5 +1,4 @@
-﻿using Shared.Interfaces;
-using Shared.Models;
+﻿using Shared.Models;
 using Shared.Services;
 
 namespace AddressBook.Services;
@@ -85,7 +84,7 @@ public class MenuService
         Console.WriteLine("Add a zipcode: ");
         contact.ZipCode = Console.ReadLine()!;
 
-        _contactService.AddContact(contact);
+        _contactService.AddContactToList(contact);
     }
 
     public static void RemoveContactOptions()
@@ -96,7 +95,7 @@ public class MenuService
         Console.WriteLine("Enter the email of the contact you want to remove");
         string email = Console.ReadLine()!;
 
-        bool isRemoved = _contactService.RemoveContactByEmail(email);
+        bool isRemoved = _contactService.RemoveContactFromList(email);
         if (isRemoved)
         {
             Console.WriteLine("Contact removed successfully.");
@@ -133,7 +132,7 @@ public class MenuService
 
     public static void GetAllContactsOptions()
     {
-        var contacts = _contactService?.GetAllContacts() ?? new List<Contact>();
+        var contacts = _contactService?.GetContacts() ?? new List<Contact>();
 
         Console.WriteLine("All Contacts");
         Console.WriteLine("---------------");

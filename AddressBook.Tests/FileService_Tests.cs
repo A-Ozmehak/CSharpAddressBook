@@ -1,5 +1,4 @@
-﻿using Shared.Interfaces;
-using Shared.Services;
+﻿using Shared.Services;
 
 namespace AddressBook.Tests;
 
@@ -9,7 +8,7 @@ public class FileService_Tests
     public void SaveContactToFileShould_SaveAContactToTheFile_ThenReturnTrue()
     {
         // Arrange
-        IFileService fileService = new FileService();
+        FileService fileService = new FileService();
         string filePath = @"C:\Users\Anna\Documents\Repos\CSharp\CSharpAddressBook\addressBookContacts.json";
         string content = "Test content";
 
@@ -24,7 +23,7 @@ public class FileService_Tests
     public void GetContactsFromFileShould_ReturnTrue_IfTheFileExists()
     {
         // Arrange
-        IFileService fileService = new FileService();
+        FileService fileService = new FileService();
         string filePath = @"C:\Users\Anna\Documents\Repos\CSharp\CSharpAddressBook\addressBookContacts.json";
         string content = "Test content";
 

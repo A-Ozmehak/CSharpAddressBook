@@ -1,5 +1,4 @@
-﻿
-using Shared.Models;
+﻿using Shared.Models;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
@@ -19,73 +18,6 @@ public class ContactService
 
     public event EventHandler? ContactUpdated;
 
-    public bool AddContact(Contact contact)
-    {
-        try
-        {
-            Contacts.Add(contact);
-
-            string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
-            _fileService.SaveContactToFile(_filePath, json);
-            return true;
-        }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return false;
-
-    }
-
-    public bool RemoveContactByEmail(string email)
-    {
-        try
-        {
-            var contactToRemove = Contacts.FirstOrDefault(c => c.Email == email);
-            if (contactToRemove != null)
-            {
-                Contacts.Remove(contactToRemove);
-
-                string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
-                _fileService.SaveContactToFile(_filePath, json);
-                return true;
-
-            }
-            else
-            {
-                Console.WriteLine("Contact not found.");
-                return false;
-            }
-        }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return false;
-    }
-
-    public Contact GetSingleContact(string firstName)
-    {
-        try
-        {
-            GetAllContacts();
-
-            var contact = Contacts.FirstOrDefault(x => x.FirstName == firstName);
-            return contact ??= null!;
-        }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return null!;
-    }
-
-    public IEnumerable<Contact> GetAllContacts()
-    {
-        try
-        {
-            var content = _fileService.GetContactsFromFile(_filePath);
-            if (!string.IsNullOrEmpty(content))
-            {
-                Contacts = JsonConvert.DeserializeObject<List<Contact>>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All })!;
-                return Contacts;
-            }
-        }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return null!;
-    }
-
     public bool AddContactToList(Contact contact)
     {
         try
@@ -100,21 +32,6 @@ public class ContactService
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return false;
-    }
-
-    public IEnumerable<Contact> GetContacts()
-    {
-        try
-        {
-            var content = _fileService.GetContactsFromFile(_filePath);
-            if (!string.IsNullOrEmpty(content))
-            {
-                Contacts = JsonConvert.DeserializeObject<List<Contact>>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All })!;
-                return Contacts;
-            }
-        }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return null!;
     }
 
     public bool RemoveContactFromList(string email)
@@ -141,6 +58,37 @@ public class ContactService
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return false;
     }
+
+
+    public Contact GetSingleContact(string firstName)
+    {
+        try
+        {
+            GetContacts();
+
+            var contact = Contacts.FirstOrDefault(x => x.FirstName == firstName);
+            return contact ??= null!;
+        }
+        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        return null!;
+    }
+ 
+    public IEnumerable<Contact> GetContacts()
+    {
+        try
+        {
+            var content = _fileService.GetContactsFromFile(_filePath);
+            if (!string.IsNullOrEmpty(content))
+            {
+                Contacts = JsonConvert.DeserializeObject<List<Contact>>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All })!;
+                return Contacts;
+            }
+        }
+        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        return null!;
+    }
+
+   
 
     public void Update(Contact contact)
     {

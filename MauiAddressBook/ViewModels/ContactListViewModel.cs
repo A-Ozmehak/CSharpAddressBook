@@ -88,13 +88,11 @@ public partial class ContactListViewModel : ObservableObject
     {
         if (string.IsNullOrEmpty(firstName))
         {
-            // If the search box is empty, show all contacts
             ContactList = new ObservableCollection<Shared.Models.Contact>(_contactService.GetContacts());
         }
         else
         {
             var matchingContacts = FindContactsByFirstName(firstName);
-            // Update the CollectionView's ItemsSource
             ContactList = new ObservableCollection<Shared.Models.Contact>(matchingContacts);
         }
     }

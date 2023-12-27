@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.Tests", "AddressBook.Tests\AddressBook.Tests.csproj", "{924529BD-3A2B-4627-9EE6-657A7E686E3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiAddressBook", "MauiAddressBook\MauiAddressBook.csproj", "{7E5D1F2E-D01D-44E9-A0BF-800A4697DF28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiAddressBook", "MauiAddressBook\MauiAddressBook.csproj", "{7E5D1F2E-D01D-44E9-A0BF-800A4697DF28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiAddressBook_Tests", "MauiAddressBook_Tests\MauiAddressBook_Tests.csproj", "{89F0A4F1-4C54-45F5-ABE0-857B2CDB2479}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{7E5D1F2E-D01D-44E9-A0BF-800A4697DF28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E5D1F2E-D01D-44E9-A0BF-800A4697DF28}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E5D1F2E-D01D-44E9-A0BF-800A4697DF28}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{89F0A4F1-4C54-45F5-ABE0-857B2CDB2479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89F0A4F1-4C54-45F5-ABE0-857B2CDB2479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89F0A4F1-4C54-45F5-ABE0-857B2CDB2479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89F0A4F1-4C54-45F5-ABE0-857B2CDB2479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

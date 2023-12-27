@@ -15,7 +15,7 @@ public class FileService
             }
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return null!;
+        return string.Empty;
 
     }
 
