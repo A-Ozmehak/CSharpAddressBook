@@ -4,7 +4,11 @@ namespace Shared.Services;
 
 public class FileService
 {
-
+    /// <summary>
+    /// Opens and reads the text in the file and deserializes it into a list of contacts
+    /// </summary>
+    /// <param name="filePath">The path where the file is</param>
+    /// <returns>A list of contacts from the file</returns>
     public string GetContactsFromFile(string filePath)
     {
         try
@@ -19,6 +23,12 @@ public class FileService
 
     }
 
+    /// <summary>
+    /// Writes the provided content to a file at the specified path
+    /// </summary>
+    /// <param name="filePath">The path where the file is to be written</param>
+    /// <param name="content">The content to be written to the file</param>
+    /// <returns>True if successful, false otherwise</returns>
     public bool SaveContactToFile(string filePath, string content)
     {
         try
